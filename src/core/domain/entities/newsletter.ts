@@ -1,19 +1,31 @@
-import type { Email } from './value-objects/email'
+import { Email } from "./value-objects/email"
 
-interface SaveProps {
-  email: Email
-}
-
-interface CancelProps {
-  email: Email
+interface NewsletterProps {
+  email: string
+  status: boolean
 }
 
 export class Newsletter {
-  save({ email }: SaveProps) {
-    console.log('Saving email', email.value)
+  protected email: Email
+  protected status: boolean
+  
+  protected constructor({email, status}: NewsletterProps) {
+    this.email = Email.create(email)
+    this.status = status
   }
 
-  cancel({ email }: CancelProps) {
-    console.log('Canceling email', email.value)
+  static create(value: string) {
+    const status = true
+
+    return new Newsletter({
+      email: value,
+      status,
+    })
+  }
+
+  get mail() {
+    return this.email.value
   }
 }
+
+const news = Newsletter.create('mat@mail.com')

@@ -12,12 +12,12 @@ export class Email {
   static create(value: string) {
     const email = new Email(value)
 
-    if (!email.isValid) throw new Error('Invalid email.')
+    if (!email.isValid()) throw new Error('Invalid email.')
 
-    return email.value
+    return email
   }
 
-  get isValid(): boolean {
+  private isValid(): boolean {
     const { success } = emailValidation.safeParse(this.value)
 
     return success
