@@ -1,7 +1,7 @@
 import { env } from '@/env/index'
 
 interface ApiProps {
-  input: RequestInfo
+  url: string
   init?: RequestInit
 }
 
@@ -17,9 +17,9 @@ export class HttpClient {
     return HttpClient.instance
   }
 
-  static async api({ input, init }: ApiProps): Promise<Response> {
+  static async api({ url, init }: ApiProps): Promise<Response> {
     const client = HttpClient.getInstance()
 
-    return await fetch(`${client.apiUrl}/${input}`, init)
+    return await fetch(`${client.apiUrl}${url}`, init)
   }
 }

@@ -6,7 +6,7 @@ import { HttpClient } from "@/core/infra/http"
 export default function Newsletter() {
   async function handleSave() {
     const responseApi = await HttpClient.api({
-      input: 'test',
+      url: '/test',
     })
 
     console.log('$ json', await responseApi.json())
